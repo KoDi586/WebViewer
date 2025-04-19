@@ -1,0 +1,1300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Petite Douceur | Artisan Confectionery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --pink-light: #fce4ec;
+            --pink-medium: #f8bbd0;
+            --pink-dark: #ec407a;
+            --cream: #fff8e1;
+            --cream-dark: #ffe0b2;
+            --brown-light: #d7ccc8;
+            --brown-medium: #a1887f;
+            --brown-dark: #5d4037;
+            --white: #ffffff;
+            --black: #212121;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--brown-dark);
+            background-color: var(--pink-light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .script-font {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            padding: 20px 0;
+        }
+
+        header.scrolled {
+            background-color: rgba(252, 228, 236, 0.95);
+            box-shadow: 0 4px 20px rgba(93, 64, 55, 0.1);
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--brown-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--pink-dark);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--pink-dark);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--brown-dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--cream) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 60%;
+            height: 60%;
+            background-color: var(--pink-medium);
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -15%;
+            left: -15%;
+            width: 70%;
+            height: 70%;
+            background-color: var(--cream-dark);
+            border-radius: 50%;
+            opacity: 0.2;
+            z-index: 0;
+            animation: float 20s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, 20px) rotate(5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 600px;
+            margin-left: 8%;
+        }
+
+        .hero-tagline {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--pink-dark);
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.2s;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--brown-dark);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.4s;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.6s;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--pink-dark);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.8s;
+        }
+
+        .btn:hover {
+            background-color: #d81b60;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(236, 64, 122, 0.3);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 90%;
+            z-index: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: fadeInRight 1s forwards 1s;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0 0 0 200px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Featured Section */
+        .featured {
+            padding: 120px 0;
+            position: relative;
+            background-color: var(--white);
+        }
+
+        .featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--pink-light);
+            clip-path: ellipse(70% 100% at 50% 0%);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--brown-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .accent {
+            font-family: 'Dancing Script', cursive;
+            color: var(--pink-dark);
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--pink-dark);
+            margin: 1rem auto 0;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 4rem;
+        }
+
+        .featured-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(93, 64, 55, 0.1);
+            transition: all 0.4s ease;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .featured-item.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .featured-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(93, 64, 55, 0.15);
+        }
+
+        .featured-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .featured-item:hover .featured-image img {
+            transform: scale(1.1);
+        }
+
+        .featured-content {
+            padding: 25px;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .featured-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--brown-dark);
+        }
+
+        .featured-content p {
+            color: var(--brown-medium);
+            margin-bottom: 1rem;
+        }
+
+        .featured-price {
+            font-weight: 600;
+            color: var(--pink-dark);
+            font-size: 1.2rem;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 120px 0;
+            background-color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            width: 40%;
+            height: 40%;
+            background-color: var(--pink-medium);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .story::after {
+            content: '';
+            position: absolute;
+            bottom: -15%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background-color: var(--cream-dark);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .story-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-text {
+            flex: 1;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .story-text.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .story-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--brown-dark);
+        }
+
+        .story-text .accent {
+            font-family: 'Dancing Script', cursive;
+            color: var(--pink-dark);
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .story-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--brown-medium);
+        }
+
+        .story-image {
+            flex: 1;
+            position: relative;
+            transform: translateX(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .story-image.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(93, 64, 55, 0.15);
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--pink-dark);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 120px 0;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 200px;
+            gap: 20px;
+            margin-top: 4rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            grid-column: span 4;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .gallery-item.animate {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 8;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(2) {
+            grid-column: span 4;
+        }
+
+        .gallery-item:nth-child(3) {
+            grid-column: span 4;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: span 4;
+        }
+
+        .gallery-item:nth-child(5) {
+            grid-column: span 4;
+        }
+
+        .gallery-item:nth-child(6) {
+            grid-column: span 8;
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 120px 0;
+            background-color: var(--pink-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 30%;
+            height: 30%;
+            background-color: var(--cream-dark);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .testimonials-slider {
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .testimonial-item {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(93, 64, 55, 0.1);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .testimonial-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--brown-medium);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '\201C';
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--pink-medium);
+            position: absolute;
+            top: -40px;
+            left: -10px;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            color: var(--brown-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--pink-dark);
+            font-size: 0.9rem;
+        }
+
+        /* Order Section */
+        .order {
+            padding: 120px 0;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .order::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--cream);
+            clip-path: ellipse(70% 100% at 50% 100%);
+        }
+
+        .order-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .order-form {
+            flex: 1;
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(93, 64, 55, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .order-form.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .order-form h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--brown-dark);
+        }
+
+        .order-form .accent {
+            font-family: 'Dancing Script', cursive;
+            color: var(--pink-dark);
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--brown-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--brown-light);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--pink-dark);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .order-image {
+            flex: 1;
+            position: relative;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .order-image.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .order-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(93, 64, 55, 0.15);
+        }
+
+        .order-image::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--pink-dark);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 30px;
+            background-color: var(--cream);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            flex: 1;
+        }
+
+        .footer-logo a {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+            text-decoration: none;
+        }
+
+        .footer-logo p {
+            margin-top: 1rem;
+            color: var(--brown-medium);
+            max-width: 300px;
+        }
+
+        .footer-links {
+            flex: 1;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--brown-dark);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--brown-medium);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--pink-dark);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--brown-light);
+            color: var(--brown-medium);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--pink-light);
+            color: var(--pink-dark);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--pink-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                margin-left: 5%;
+                max-width: 500px;
+            }
+
+            .hero-image {
+                width: 45%;
+            }
+
+            .story-content,
+            .order-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .story-image,
+            .order-image {
+                order: -1;
+            }
+
+            .gallery-item {
+                grid-column: span 6 !important;
+            }
+
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(6) {
+                grid-row: span 1 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 1001;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            .hero {
+                height: auto;
+                padding: 150px 0 100px;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+                text-align: center;
+                align-items: center;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-image {
+                position: relative;
+                width: 100%;
+                height: 400px;
+                margin-top: 50px;
+            }
+
+            .hero-image img {
+                border-radius: 20px;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                grid-column: span 12 !important;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.5rem;
+            }
+
+            .story-text h2,
+            .order-form h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">La Petite Douceur</a>
+            <nav>
+                <button class="mobile-menu-btn">☰</button>
+                <ul>
+                    <li><a href="#featured">Our Treats</a></li>
+                    <li><a href="#story">Our Story</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#order">Order Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tagline">Handcrafted with love</span>
+            <h1 class="hero-title">Indulge in Sweet Moments of Pure Bliss</h1>
+            <p class="hero-description">Experience the artistry of our confections, where every bite tells a story of passion, creativity, and the finest ingredients. Our desserts are not just treats; they're unforgettable experiences.</p>
+            <a href="#order" class="btn">Order Your Delight</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Delicious macarons and pastries">
+        </div>
+    </section>
+
+    <section id="featured" class="featured">
+        <div class="container">
+            <div class="section-title">
+                <span class="accent">Taste the difference</span>
+                <h2>Our Signature Treats</h2>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1558326567-98166332163b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Colorful macarons">
+                    </div>
+                    <div class="featured-content">
+                        <h3>Artisan Macarons</h3>
+                        <p>Delicate almond meringue cookies with ganache filling in a variety of flavors.</p>
+                        <span class="featured-price">From $2.50</span>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Chocolate truffles">
+                    </div>
+                    <div class="featured-content">
+                        <h3>Chocolate Truffles</h3>
+                        <p>Handcrafted chocolate ganache spheres dusted with cocoa powder.</p>
+                        <span class="featured-price">From $3.25</span>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1612203985729-70726954388c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Petit fours">
+                    </div>
+                    <div class="featured-content">
+                        <h3>Petit Fours</h3>
+                        <p>Miniature layered cakes glazed with fondant and decorated by hand.</p>
+                        <span class="featured-price">From $2.75</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="story" class="story">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-text">
+                    <span class="accent">Our journey</span>
+                    <h2>Crafting Sweet Memories Since 2010</h2>
+                    <p>La Petite Douceur began as a small dream in a Parisian-trained pastry chef's kitchen. What started as a passion for creating the perfect macaron has blossomed into an artisanal confectionery beloved for its commitment to quality and creativity.</p>
+                    <p>Every creation that leaves our kitchen is made with the finest ingredients, meticulous attention to detail, and a touch of magic. We believe that desserts should be as beautiful as they are delicious, creating moments of joy with every bite.</p>
+                    <a href="#order" class="btn">Taste Our Story</a>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Pastry chef creating desserts">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <span class="accent">Visual delights</span>
+                <h2>Our Sweet Creations</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Assorted pastries">
+                    <div class="gallery-overlay">
+                        <h3>Pastry Collection</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Chocolate bonbons">
+                    <div class="gallery-overlay">
+                        <h3>Chocolate Bonbons</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" alt="Fruit tarts">
+                    <div class="gallery-overlay">
+                        <h3>Seasonal Fruit Tarts</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="Chocolate desserts">
+                    <div class="gallery-overlay">
+                        <h3>Chocolate Creations</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1464195244916-405fa0a82545?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Macarons">
+                    <div class="gallery-overlay">
+                        <h3>Macaron Tower</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1587244141530-6b6aceef93db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Dessert table">
+                    <div class="gallery-overlay">
+                        <h3>Celebration Dessert Table</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <span class="accent">What people say</span>
+                <h2>Sweet Testimonials</h2>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-item">
+                    <p class="testimonial-text">The macarons from La Petite Douceur are simply divine! Each bite is a perfect balance of crisp shell and creamy filling. I've tried many macarons in my travels, but these are truly exceptional.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sophie Martin">
+                        <div class="author-info">
+                            <h4>Sophie Martin</h4>
+                            <p>Dessert Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="order">
+        <div class="container">
+            <div class="order-content">
+                <div class="order-form">
+                    <span class="accent">Treat yourself</span>
+                    <h2>Order Your Sweet Indulgence</h2>
+                    <form id="orderForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Your Phone</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="order">Your Order Details</label>
+                            <textarea id="order" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Place Order</button>
+                    </form>
+                </div>
+                <div class="order-image">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80" alt="Beautifully packaged confections">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#">La Petite Douceur</a>
+                    <p>Handcrafted confections made with love and the finest ingredients. Creating sweet moments since 2010.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#featured">Our Treats</a></li>
+                            <li><a href="#story">Our Story</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#testimonials">Reviews</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                            <li><a href="mailto:hello@lapetitedouceur.com">hello@lapetitedouceur.com</a></li>
+                            <li>123 Sweet Street, Dessert City</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 La Petite Douceur. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+
+        menuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                navMenu.classList.remove('active');
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.featured-item, .story-text, .story-image, .gallery-item, .testimonial-item, .order-form, .order-image');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+
+        // Initial check for elements in view
+        window.addEventListener('load', animateOnScroll);
+        
+        // Check for elements in view on scroll
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Form submission
+        const orderForm = document.getElementById('orderForm');
+        
+        if (orderForm) {
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your order! We will contact you shortly to confirm the details.');
+                orderForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
